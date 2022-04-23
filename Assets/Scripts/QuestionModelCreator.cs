@@ -28,6 +28,7 @@ public class QuestionModelCreator
                 model.setRightButtonText(reader.ReadLine());
                 model.setIsLeft(Convert.ToBoolean(reader.ReadLine()));
                 _questions.Add(model);
+                reader.ReadLine();
             }
         }
     }
