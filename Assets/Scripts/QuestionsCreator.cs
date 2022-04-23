@@ -14,6 +14,9 @@ public class QuestionsCreator : MonoBehaviour
     [SerializeField] private Button _rightButton;
     [SerializeField] private Button _nextButton;
 
+    [SerializeField] private GameObject _endText;
+    [SerializeField] private Canvas _canvas;
+    
     private Color normalButtonColor = Color.white;
 
     private QuestionModelCreator _questionsCreator;
@@ -43,6 +46,10 @@ public class QuestionsCreator : MonoBehaviour
         if (currentQuestionNumber < _questionsCreator.getQuestionCount())
         {
             createNewQuestion();
+        }
+        else
+        {
+            End();
         }
     }
 
@@ -94,5 +101,15 @@ public class QuestionsCreator : MonoBehaviour
         _leftButton.enabled = true;
         _rightButton.enabled = true;
     }
-    
+
+    private void End()
+    {
+        Destroy(_questionText.gameObject);
+        Destroy(_leftButton.gameObject);
+        Destroy(_rightButton.gameObject);
+        Destroy(_nextButton.gameObject);
+
+        _endText.GetComponent<Text>().text = "Ваш счет: " + count + "/" + _questionsCreator.getQuestionCount();
+        Instantiate(_endText, _canvas.transform);
+    }
 }
