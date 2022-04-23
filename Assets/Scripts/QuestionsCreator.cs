@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class QuestionsCreator : MonoBehaviour
@@ -15,6 +16,7 @@ public class QuestionsCreator : MonoBehaviour
     [SerializeField] private Button _nextButton;
 
     [SerializeField] private GameObject _endText;
+    [SerializeField] private Button _toMenuButton;
     [SerializeField] private Canvas _canvas;
     
     private Color normalButtonColor = Color.white;
@@ -111,5 +113,14 @@ public class QuestionsCreator : MonoBehaviour
 
         _endText.GetComponent<Text>().text = "Ваш счет: " + count + "/" + _questionsCreator.getQuestionCount();
         Instantiate(_endText, _canvas.transform);
+        
+
+        var additionalButton = Instantiate(_toMenuButton, _canvas.transform);
+        additionalButton.onClick.AddListener(OnClickToMenu);
+    }
+
+    private void OnClickToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
