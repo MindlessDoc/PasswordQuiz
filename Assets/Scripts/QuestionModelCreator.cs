@@ -11,7 +11,7 @@ public class QuestionModelCreator
 
     public QuestionModelCreator()
     {
-        string textAsset = File.ReadAllText(Application.dataPath+ "/Resource/questionsFile.txt");
+        string textAsset = Resources.Load("questionsFile").ToString();
         StringReader reader = new StringReader(textAsset);
         while (true)
         {
